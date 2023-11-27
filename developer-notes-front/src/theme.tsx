@@ -1,17 +1,20 @@
-export const theme1 = {
-  colors: {
-    color1: '#57C5B6',
-    color2: '#159895',
-    color3: '#1A5F7A',
-    color4: '#002B5B',
-  },
-};
+import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
 
-export const theme2 = {
+// 2. Add your color mode config
+
+// 3. extend the theme
+
+const theme = extendTheme({
   colors: {
-    color1: '#000000',
-    color2: '#262A56',
-    color3: '#B8621B',
-    color4: '#E3CCAE',
+    default: {
+      backgroundSolid: '#2c3f52',
+      foregroundText: '#fbe0c4',
+      gradient: false,
+      boxShadows: true,
+      boxShadowSettings1: '#253544',
+      boxShadowSettings2: '#31475c',
+    },
   },
-};
+});
+
+export default theme;

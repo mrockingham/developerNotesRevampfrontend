@@ -9,18 +9,31 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.17",
     "@chakra-ui/react": "^2.5.3",
+    "@codemirror/lang-css": "^6.2.1",
+    "@codemirror/lang-html": "^6.4.6",
+    "@codemirror/lang-javascript": "^6.2.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@types/node": "18.15.9",
     "@types/react": "18.0.29",
     "@types/react-dom": "18.0.11",
+    "@uiw/codemirror-theme-aura": "^4.21.20",
+    "@uiw/codemirror-theme-basic": "^4.21.20",
+    "@uiw/react-codemirror": "^4.21.20",
+    "axios": "^1.6.0",
+    "console-feed": "^3.5.0",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "framer-motion": "^10.9.1",
     "next": "13.2.4",
+    "next-auth": "^4.24.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.0.2"
+    "react-icons": "^4.8.0",
+    "run-js": "^2.1.1",
+    "typescript": "5.0.2",
+    "zustand": "^4.4.4"
   }
 }
