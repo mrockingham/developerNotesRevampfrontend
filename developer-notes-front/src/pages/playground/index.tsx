@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import PlayGround from './PlayGround';
+import PlayGround from '../../Components/playground/PlayGround';
 
 const index = () => {
   return (

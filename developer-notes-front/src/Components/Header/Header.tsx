@@ -18,13 +18,13 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-// import { signOut, useSession } from 'next-auth/client';
+
 import Link from 'next/link';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { AiOutlineMenuFold } from 'react-icons/ai';
 import { useRouter } from 'next/router';
-// import axios from 'axios';
-// import { useCreator } from '../../Context/UserContext';
+
+import { useCodeBlockStore } from '@/stores/useCodeBlockStore';
 import { useUserStore } from '@/stores/useUserStore';
 import NextImage from 'next/image';
 import { signOut, useSession } from 'next-auth/react';
@@ -71,6 +71,11 @@ export default function WithAction() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
   const { data: session } = useSession();
+  const {
+    getCodeBlockByCategory,
+
+    codeBlocksCategory,
+  } = useCodeBlockStore((state: any) => state);
   const { data, checkLoggedIn, logout, isLoggedIn } = useUserStore(
     (state: any) => state
   );
@@ -105,15 +110,11 @@ export default function WithAction() {
     logout();
   };
 
-  console.log('check session', session);
-
   useEffect(() => {
     checkLoggedIn();
     if (session?.user?.name) {
     }
   }, []);
-
-
 
   return (
     <Box
@@ -132,7 +133,11 @@ export default function WithAction() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box fontSize="2rem" fontWeight="bold">
+            <Box
+              color={selectedDefaultTextColor().backgroundText}
+              fontSize="2rem"
+              fontWeight="bold"
+            >
               <Link href="/">DevErNote</Link>
             </Box>
             <HStack
@@ -240,9 +245,16 @@ export default function WithAction() {
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
               {Links.map(({ name, path }) => (
-                <NavLink key={path} path={path}>
-                  {name}
-                </NavLink>
+                <Box
+                  onClick={() => {
+                    console.log('what name', name);
+                    name === 'Home' && getCodeBlockByCategory(data?.email);
+                  }}
+                >
+                  <NavLink key={path} path={path}>
+                    {name}
+                  </NavLink>
+                </Box>
               ))}
             </Stack>
           </Box>

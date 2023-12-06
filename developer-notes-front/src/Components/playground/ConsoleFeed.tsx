@@ -1,3 +1,4 @@
+'use client';
 import { Console, Hook, Unhook } from 'console-feed';
 import { Message } from 'console-feed/lib/definitions/Component';
 import { useEffect, useState } from 'react';

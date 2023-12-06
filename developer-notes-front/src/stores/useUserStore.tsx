@@ -21,7 +21,7 @@ export const useUserStore = create(set => ({
     // Check if a token is present in local storage
 
     const token = localStorage.getItem('accessTokenDevER');
-    console.log('header token', token);
+
     if (token) {
       const userObject = JSON.parse(token || '');
       console.log('local info', userObject);
@@ -50,6 +50,7 @@ export const useUserStore = create(set => ({
       const userObject = {
         name: response?.data.name,
         email: response?.data.email,
+        provider: response?.data.provider,
         token: response?.data.token,
         theme: response?.data.theme,
       };
@@ -64,7 +65,7 @@ export const useUserStore = create(set => ({
           data: {
             name: response.data.name,
             email: response.data.email,
-            provider: false,
+            provider: response.data.provider,
             theme: response?.data.theme,
           },
         });
@@ -202,6 +203,14 @@ export const useUserStore = create(set => ({
       console.log('update response', updateUserTheme);
 
       if (updateUserTheme.status === 200) {
+        const userObject = {
+          name: updateUserTheme?.data.name,
+          email: updateUserTheme?.data.email,
+          provider: updateUserTheme?.data.provider,
+          // token: response?.data.token,
+          theme: updateUserTheme?.data.theme,
+        };
+        localStorage.setItem('accessTokenDevER', JSON.stringify(userObject));
         set({
           data: {
             email: updateUserTheme?.data?.email,

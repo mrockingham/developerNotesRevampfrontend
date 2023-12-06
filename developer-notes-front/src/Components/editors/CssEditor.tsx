@@ -1,4 +1,6 @@
+'use client';
 import React, { useState, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 import CodeMirror from '@uiw/react-codemirror';
 import { Text, Flex, Button, Box, useColorMode } from '@chakra-ui/react';
 import NextImage from 'next/image';
@@ -12,13 +14,25 @@ import { aura } from '@uiw/codemirror-theme-aura';
 import { basicDark } from '@uiw/codemirror-theme-basic';
 
 const CssEditor = (props: { setCssValue: any; value: any }) => {
+  const pathname = usePathname();
   const { setCssValue, value } = props;
   const { toggleColorMode, colorMode } = useColorMode();
   const [open, setOpen] = useState(true);
   const onChange = useCallback((val, viewUpdate) => {
-    console.log('val:', val);
     setCssValue(val);
+    if (pathname != 'home') {
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('DevErNote-current-notecss', JSON.stringify(val));
+      }
+    }
   }, []);
+
+  const cssValue = () => {
+    if (typeof window !== 'undefined') {
+      const jsonValue = localStorage.getItem('DevErNote-current-notecss');
+      return jsonValue != null ? JSON.parse(jsonValue) : '';
+    } else return '';
+  };
   return (
     <Flex flexDirection="column" width={open ? '100%' : '20%'}>
       <Flex pl={3} pr={10} w="100%" justifyContent="space-between">
@@ -59,7 +73,7 @@ const CssEditor = (props: { setCssValue: any; value: any }) => {
         // borderColor={colorMode === 'light' ? TextColor1() : TextColor2()}
       >
         <CodeMirror
-          value={value}
+          value={pathname != '/home' ? cssValue() : value}
           height="300px"
           extensions={[css()]}
           onChange={onChange}

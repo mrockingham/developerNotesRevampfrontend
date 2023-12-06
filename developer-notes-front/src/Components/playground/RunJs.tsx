@@ -1,3 +1,4 @@
+'use client';
 export type JsRunnerEnv<T = HTMLIFrameElement | Worker> = {
   current: T | undefined;
 };

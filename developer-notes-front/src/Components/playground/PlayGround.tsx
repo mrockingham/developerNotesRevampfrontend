@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import {
   Flex,
@@ -12,6 +13,7 @@ import {
   useColorMode,
   Textarea,
   Box,
+  Input,
 } from '@chakra-ui/react';
 
 import {
@@ -24,6 +26,9 @@ import HtmlEditor from '@/Components/editors/HtmlEditor';
 import CssEditor from '@/Components/editors/CssEditor';
 import { ConsoleFeed, Message } from './ConsoleFeed';
 import { JsRunnerEnv, runJS } from './RunJs';
+import { useCodeBlockStore } from '@/stores/useCodeBlockStore';
+import { useUserStore } from '@/stores/useUserStore';
+import SaveCodelModal from './SaveCodelModal';
 
 interface Props {
   runner?: 'iframe' | 'webWorker';
@@ -31,6 +36,10 @@ interface Props {
 
 const PlayGround: React.FC<Props> = props => {
   const { toggleColorMode, colorMode } = useColorMode();
+  const { getCodeBlockById, createCodeBlock } = useCodeBlockStore(
+    (state: any) => state
+  );
+  const { data, codeBlockData } = useUserStore((state: any) => state);
   const { runner = 'webWorker' } = props;
   const [logs, setLogs] = useState([]);
   const [srcDoc, setSrcDoc] = useState('');
@@ -39,6 +48,8 @@ const PlayGround: React.FC<Props> = props => {
   const [jsValue, setJsValue] = useState();
   const [htmlValue, setHtmlValue] = useState();
   const [cssValue, setCssValue] = useState();
+  const [title, setTitle] = useState('');
+  const [note, setNote] = useState('');
   const jsRunnerEnvRef = useRef<JsRunnerEnv>();
 
   const runCode = async () => {
@@ -49,6 +60,23 @@ const PlayGround: React.FC<Props> = props => {
       runJS(code, runner, jsRunnerEnvRef as JsRunnerEnv);
     }
   };
+
+  const saveCodeBlock = () => {
+    createCodeBlock({
+      title: title,
+      creator: data?.email,
+      provider: data?.provider,
+      category: '',
+      subCategory: '',
+      html: htmlValue,
+      css: cssValue,
+      javascript: jsValue,
+      note: note,
+      tags: '',
+      useFullCount: '',
+    });
+  };
+
   const onLog = useCallback((log: Message) => {
     setLogs(pre => [...pre, log]);
   }, []);
@@ -67,17 +95,45 @@ const PlayGround: React.FC<Props> = props => {
     }, 250);
     return () => clearTimeout(timeout);
   }, [htmlValue, cssValue, jsValue]);
+  useEffect(() => {
+    const storedTitle = localStorage.getItem('DevErNote-current-notetitle');
+    const storedNote = localStorage.getItem('DevErNote-current-note');
+    if (storedTitle) {
+      setTitle(JSON.parse(storedTitle));
+    }
+    if (storedNote) {
+      setNote(JSON.parse(storedNote));
+    }
+  }, []);
 
   return (
     <Container maxW="90%">
-      <Text
-        my={4}
-        fontWeight={400}
-        fontSize="4xl"
-        color={selectedDefaultTextColor().backgroundText}
-      >
-        Playground
-      </Text>
+      <Flex justifyContent={'center'}>
+        <Text
+          my={4}
+          fontWeight={400}
+          fontSize="4xl"
+          color={selectedDefaultTextColor().backgroundText}
+        >
+          Playground
+        </Text>
+      </Flex>
+      <Flex>
+        <Input
+          value={title}
+          onChange={e => {
+            setTitle(e.target.value);
+            localStorage.setItem(
+              'DevErNote-current-notetitle',
+              JSON.stringify(title)
+            );
+          }}
+          variant="flushed"
+          placeholder="Title"
+          _placeholder={{ fontSize: '24px' }}
+          w="200px"
+        />
+      </Flex>
 
       <Flex
         direction={{ base: 'column', md: 'row' }}
@@ -90,21 +146,31 @@ const PlayGround: React.FC<Props> = props => {
         <HtmlEditor value={htmlValue} setHtmlValue={setHtmlValue} />
         <CssEditor value={cssValue} setCssValue={setCssValue} />
       </Flex>
-
-      <Button
-        mt={2}
-        ml={4}
-        rounded={'full'}
-        size={'md'}
-        fontWeight={'normal'}
-        px={6}
-        // bg={colorMode === 'light' ? TextColor1() : TextColor2()}
-        _hover={{ bg: 'blue.500' }}
-        onClick={runCode}
-      >
-        {' '}
-        &#10148; Run Code
-      </Button>
+      <Flex>
+        <Button
+          w="150px"
+          mt={2}
+          ml={4}
+          rounded={'full'}
+          size={'md'}
+          fontWeight={'normal'}
+          px={6}
+          // bg={colorMode === 'light' ? TextColor1() : TextColor2()}
+          _hover={{ bg: 'blue.500' }}
+          onClick={runCode}
+        >
+          {' '}
+          &#10148; Run Code
+        </Button>
+        <SaveCodelModal
+          title={title}
+          setTitle={setTitle}
+          html={htmlValue}
+          css={cssValue}
+          javascript={jsValue}
+          note={note}
+        />
+      </Flex>
       <Flex justifyContent="space-between">
         <Tabs isFitted variant="unstyled" mt={4} w="45%">
           <TabList>
@@ -177,6 +243,14 @@ const PlayGround: React.FC<Props> = props => {
           </Text>
           <Box mt={8}>
             <Textarea
+              value={note}
+              onChange={e => {
+                setNote(e.target.value);
+                localStorage.setItem(
+                  'DevErNote-current-note',
+                  JSON.stringify(note)
+                );
+              }}
               h="200px"
               border="2px"
               // borderColor={colorMode === 'light' ? TextColor1() : TextColor2()}
