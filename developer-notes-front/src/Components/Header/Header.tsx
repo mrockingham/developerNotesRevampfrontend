@@ -247,6 +247,7 @@ export default function WithAction() {
             <Stack as={'nav'} spacing={4}>
               {Links.map(({ name, path }) => (
                 <Box
+                  key={name}
                   onClick={() => {
                     console.log('what name', name);
                     name === 'Home' && getCodeBlockByCategory(data?.email);

@@ -75,6 +75,7 @@ const FoldersFiles = () => {
     } else if (folderView === 'singleFiles' && codeBlocksUserCategories) {
       setCodeBlockStateData(codeBlocksUserCategories);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     codeBlocksCategory,
     codeBlocksCreator,
