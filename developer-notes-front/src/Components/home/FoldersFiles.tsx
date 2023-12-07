@@ -20,7 +20,14 @@ import {
   SelectedDefaultTextColor,
 } from '@/utils/colorSelection';
 
-const FoldersFiles = () => {
+interface CodeBlock {
+  _id: string;
+  category: string;
+  title: string;
+}
+interface FoldersFilesProps {}
+
+const FoldersFiles: React.FC<FoldersFilesProps> = () => {
   const {
     createCodeBlock,
     getCodeBlockByCategory,
@@ -34,7 +41,7 @@ const FoldersFiles = () => {
     message,
   } = useCodeBlockStore((state: any) => state);
   const { data } = useUserStore((state: any) => state);
-  const [codeBlockStateData, setCodeBlockStateData] = useState([]);
+  const [codeBlockStateData, setCodeBlockStateData] = useState<CodeBlock[]>([]);
   const [selctedCodeBlock, setSelectedCodeBlock] = useState({});
   const [folderView, setFolderView] = useState('folder');
 
@@ -159,7 +166,7 @@ const FoldersFiles = () => {
           flexDirection="row"
           justifyContent="flex-start"
         >
-          {codeBlockStateData?.codeBlock?.map((item: any) => (
+          {codeBlockStateData?.codeBlock?.map((item: CodeBlock) => (
             <Flex
               onClick={() => {
                 if (folderView === 'folder') {
