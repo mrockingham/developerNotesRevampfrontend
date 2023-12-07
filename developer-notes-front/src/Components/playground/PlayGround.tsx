@@ -57,7 +57,7 @@ const PlayGround: React.FC<Props> = props => {
     if (doRun) {
       setLogs([]);
       setIsRunConfirmed(true);
-      runJS(code, runner, jsRunnerEnvRef as JsRunnerEnv);
+      runJS(code, runner, jsRunnerEnvRef.current);
     }
   };
 
