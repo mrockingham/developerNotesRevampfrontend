@@ -1,3 +1,4 @@
+import React, { ReactNode } from 'react';
 import Header from './Header/Header';
 import {
   Box,
@@ -8,7 +9,7 @@ import {
 import { useUserStore } from '@/stores/useUserStore';
 import { SelectedBackgroundColor } from '@/utils/colorSelection';
 
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { data, isUserLoading, userError, createUser } = useUserStore(
     (state: any) => state
   );
