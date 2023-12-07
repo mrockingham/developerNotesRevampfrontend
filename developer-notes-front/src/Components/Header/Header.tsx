@@ -135,7 +135,11 @@ export default function WithAction() {
           />
           <HStack spacing={8} alignItems={'center'}>
             <Box
-              color={SelectedDefaultTextColor().backgroundText}
+              color={
+                SelectedDefaultTextColor().backgroundText(
+                  SelectedDefaultTextColor().backgroundText as string
+                ) || ''
+              }
               fontSize="2rem"
               fontWeight="bold"
             >
@@ -184,12 +188,11 @@ export default function WithAction() {
                       lg: '1.3rem',
                     }}
                     pr={2}
+                  ></Text>
+                  <Box
+                    color={(data?.theme?.backGroundText as string) || ''}
+                    fontSize="4xl"
                   >
-                    {/* {shortString(session?.user?.name)
-                      ? shortString(session?.user?.name)
-                      : 'Login'} */}
-                  </Text>
-                  <Box color={data?.theme?.backGroundText} fontSize="4xl">
                     <AiOutlineMenuFold />
                   </Box>
                 </Flex>
