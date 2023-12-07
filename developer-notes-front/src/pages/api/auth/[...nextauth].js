@@ -8,6 +8,7 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_SECRET ?? '',
     }),
   ],
+  secret: process.env.VERIFICATION_TOKEN,
 });
 
 export default handler;
