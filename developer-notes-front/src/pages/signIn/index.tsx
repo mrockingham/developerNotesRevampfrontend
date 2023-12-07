@@ -9,7 +9,7 @@ import {
   Input,
   Button,
 } from '@chakra-ui/react';
-import { selectedDefaultTextColor } from '@/utils/colorSelection';
+import { SelectedDefaultTextColor } from '@/utils/colorSelection';
 
 import SignInComponent from '@/Components/signIn/SignIn';
 
@@ -27,11 +27,11 @@ const SignIn = () => {
           <Box display={{ base: 'none', md: 'block' }} w="50%">
             <Text
               fontSize="4xl"
-              color={selectedDefaultTextColor().backgroundText}
+              color={SelectedDefaultTextColor().backgroundText}
             >
               DevErNote
             </Text>
-            <Text color={selectedDefaultTextColor().backgroundText}>
+            <Text color={SelectedDefaultTextColor().backgroundText}>
               {' '}
               Save your Code snippets for ease of access,have one you like,
               share it!
@@ -47,7 +47,7 @@ const SignIn = () => {
             borderColor={''}
           >
             <Text
-              color={selectedDefaultTextColor().backgroundText}
+              color={SelectedDefaultTextColor().backgroundText}
               fontSize="3xl"
             >
               Sign In

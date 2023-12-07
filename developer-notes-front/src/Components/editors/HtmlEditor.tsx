@@ -4,8 +4,8 @@ import { Text, Flex, Button, Box, useColorMode, Image } from '@chakra-ui/react';
 import CodeMirror from '@uiw/react-codemirror';
 import NextImage from 'next/image';
 import {
-  selectedBackgroundColor,
-  selectedDefaultTextColor,
+  SelectedBackgroundColor,
+  SelectedDefaultTextColor,
 } from '@/utils/colorSelection';
 import { html } from '@codemirror/lang-html';
 import { aura } from '@uiw/codemirror-theme-aura';
@@ -19,6 +19,7 @@ const HtmlEditor = (props: { setHtmlValue: any; value: string }) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('DevErNote-current-notehtml', JSON.stringify(val));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const htmlValue = () => {
@@ -32,7 +33,7 @@ const HtmlEditor = (props: { setHtmlValue: any; value: string }) => {
       <Flex pl={3} pr={10} w="100%" justifyContent="space-between">
         <Text
           fontSize="1.8rem"
-          color={selectedDefaultTextColor().backgroundText}
+          color={SelectedDefaultTextColor().backgroundText}
         >
           HTML
         </Text>

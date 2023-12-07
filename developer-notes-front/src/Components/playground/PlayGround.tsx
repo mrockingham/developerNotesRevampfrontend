@@ -17,8 +17,8 @@ import {
 } from '@chakra-ui/react';
 
 import {
-  selectedBackgroundColor,
-  selectedDefaultTextColor,
+  SelectedBackgroundColor,
+  SelectedDefaultTextColor,
 } from '@/utils/colorSelection';
 
 import JSEditor from '@/Components/editors/JSEditor';
@@ -113,7 +113,7 @@ const PlayGround: React.FC<Props> = props => {
           my={4}
           fontWeight={400}
           fontSize="4xl"
-          color={selectedDefaultTextColor().backgroundText}
+          color={SelectedDefaultTextColor().backgroundText}
         >
           Playground
         </Text>
@@ -178,7 +178,7 @@ const PlayGround: React.FC<Props> = props => {
               <Text
                 p={2}
                 fontSize="1.4rem"
-                color={selectedDefaultTextColor().backgroundText}
+                color={SelectedDefaultTextColor().backgroundText}
               >
                 Console
               </Text>
@@ -187,7 +187,7 @@ const PlayGround: React.FC<Props> = props => {
               <Text
                 p={2}
                 fontSize="1.4rem"
-                color={selectedDefaultTextColor().backgroundText}
+                color={SelectedDefaultTextColor().backgroundText}
               >
                 Browser
               </Text>
@@ -236,7 +236,7 @@ const PlayGround: React.FC<Props> = props => {
         <Box w="45%">
           <Text
             fontSize="1.4rem"
-            color={selectedDefaultTextColor().backgroundText}
+            color={SelectedDefaultTextColor().backgroundText}
             pt={8}
           >
             Notes:

@@ -16,8 +16,8 @@ import {
 import { useCodeBlockStore } from '@/stores/useCodeBlockStore';
 import { useUserStore } from '@/stores/useUserStore';
 import {
-  selectedBackgroundColor,
-  selectedDefaultTextColor,
+  SelectedBackgroundColor,
+  SelectedDefaultTextColor,
 } from '@/utils/colorSelection';
 
 const FoldersFiles = () => {
@@ -64,6 +64,7 @@ const FoldersFiles = () => {
     //     data.email
     //   );
     // }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [folderView, data.email, message]);
 
   useEffect(() => {
@@ -90,7 +91,7 @@ const FoldersFiles = () => {
   };
 
   return (
-    <Box w="100%" color={selectedDefaultTextColor().backgroundText}>
+    <Box w="100%" color={SelectedDefaultTextColor().backgroundText}>
       <Text mb={2} fontSize="4xl">
         {' '}
         Welcome {data.name}

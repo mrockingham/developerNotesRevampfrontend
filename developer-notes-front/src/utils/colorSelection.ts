@@ -1,7 +1,7 @@
 import { useUserStore } from '@/stores/useUserStore';
 
 
-export const selectedBackgroundColor = () => {
+export const SelectedBackgroundColor = () => {
     const { data } = useUserStore(
         (state: any) => state
     );
@@ -15,7 +15,7 @@ export const selectedBackgroundColor = () => {
     } else backgroundColor = 'default.backgroundSolid';
     return backgroundColor;
 };
-export const selectedDefaultTextColor = () => {
+export const SelectedDefaultTextColor = () => {
     const { data } = useUserStore(
         (state: any) => state
     );

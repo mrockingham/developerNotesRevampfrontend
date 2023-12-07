@@ -17,8 +17,8 @@ import {
 import { useCodeBlockStore } from '@/stores/useCodeBlockStore';
 import { useUserStore } from '@/stores/useUserStore';
 import {
-  selectedBackgroundColor,
-  selectedDefaultTextColor,
+  SelectedBackgroundColor,
+  SelectedDefaultTextColor,
 } from '@/utils/colorSelection';
 import JSEditor from '@/Components/editors/JSEditor';
 import HtmlEditor from '@/Components/editors/HtmlEditor';
@@ -75,7 +75,7 @@ const ViewCodeBlock = () => {
 
   console.log('css value', cssValue);
   return (
-    <Box w="100%" color={selectedDefaultTextColor().backgroundText}>
+    <Box w="100%" color={SelectedDefaultTextColor().backgroundText}>
       <Text mb={2} fontSize="4xl">
         {' '}
         Edit

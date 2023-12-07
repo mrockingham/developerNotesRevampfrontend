@@ -14,7 +14,7 @@ import GoogleSignIn from './GoogleSignIn';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useUserStore } from '@/stores/useUserStore';
-import { selectedDefaultTextColor } from '@/utils/colorSelection';
+import { SelectedDefaultTextColor } from '@/utils/colorSelection';
 
 const RegisterComponent = () => {
   const { toggleColorMode, colorMode } = useColorMode();
@@ -77,7 +77,7 @@ const RegisterComponent = () => {
     <Box>
       <Box>
         <FormControl
-          color={selectedDefaultTextColor().backgroundText}
+          color={SelectedDefaultTextColor().backgroundText}
           isRequired
         >
           <FormLabel fontSize="2rem">Name</FormLabel>
@@ -87,7 +87,7 @@ const RegisterComponent = () => {
               setName(e.target.value);
               setError('');
             }}
-            borderColor={selectedDefaultTextColor().backgroundText}
+            borderColor={SelectedDefaultTextColor().backgroundText}
             variant="outline"
             type="text"
           />
@@ -95,14 +95,14 @@ const RegisterComponent = () => {
       </Box>
       <Box>
         <FormControl
-          color={selectedDefaultTextColor().backgroundText}
+          color={SelectedDefaultTextColor().backgroundText}
           id="email"
           isRequired
         >
           <FormLabel fontSize="2rem">Email</FormLabel>
 
           <Input
-            color={selectedDefaultTextColor().backgroundText}
+            color={SelectedDefaultTextColor().backgroundText}
             value={email}
             onChange={e => {
               setEmail(e.target.value);
@@ -115,13 +115,13 @@ const RegisterComponent = () => {
       </Box>
       <Box>
         <FormControl
-          color={selectedDefaultTextColor().backgroundText}
+          color={SelectedDefaultTextColor().backgroundText}
           id="password"
           isRequired
         >
           <FormLabel fontSize="2rem">Password</FormLabel>
           <Input
-            color={selectedDefaultTextColor().backgroundText}
+            color={SelectedDefaultTextColor().backgroundText}
             value={password}
             onChange={e => {
               setPassword(e.target.value);
@@ -140,8 +140,8 @@ const RegisterComponent = () => {
           borderRadius="30px"
           mb={4}
           w="100%"
-          color={selectedDefaultTextColor().backgroundText}
-          bg={selectedDefaultTextColor().foregroundText}
+          color={SelectedDefaultTextColor().backgroundText}
+          bg={SelectedDefaultTextColor().foregroundText}
           onClick={handleSubmit}
         >
           Submit

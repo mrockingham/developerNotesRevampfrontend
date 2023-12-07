@@ -15,7 +15,7 @@ import {
 import { useUserStore } from '@/stores/useUserStore';
 import GoogleSignIn from '../register/GoogleSignIn';
 import { useSession } from 'next-auth/react';
-import { selectedDefaultTextColor } from '@/utils/colorSelection';
+import { SelectedDefaultTextColor } from '@/utils/colorSelection';
 
 const SignInComponent = () => {
   const router = useRouter();
@@ -106,8 +106,8 @@ const SignInComponent = () => {
           borderRadius="30px"
           mb={4}
           w="100%"
-          color={selectedDefaultTextColor().backgroundText}
-          bg={selectedDefaultTextColor().foregroundText}
+          color={SelectedDefaultTextColor().backgroundText}
+          bg={SelectedDefaultTextColor().foregroundText}
           onClick={handleSubmit}
         >
           Submit

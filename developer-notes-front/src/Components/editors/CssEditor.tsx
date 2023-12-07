@@ -5,8 +5,8 @@ import CodeMirror from '@uiw/react-codemirror';
 import { Text, Flex, Button, Box, useColorMode } from '@chakra-ui/react';
 import NextImage from 'next/image';
 import {
-  selectedBackgroundColor,
-  selectedDefaultTextColor,
+  SelectedBackgroundColor,
+  SelectedDefaultTextColor,
 } from '@/utils/colorSelection';
 
 import { css } from '@codemirror/lang-css';
@@ -25,6 +25,7 @@ const CssEditor = (props: { setCssValue: any; value: any }) => {
         localStorage.setItem('DevErNote-current-notecss', JSON.stringify(val));
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const cssValue = () => {
@@ -38,7 +39,7 @@ const CssEditor = (props: { setCssValue: any; value: any }) => {
       <Flex pl={3} pr={10} w="100%" justifyContent="space-between">
         <Text
           fontSize="1.8rem"
-          color={selectedDefaultTextColor().backgroundText}
+          color={SelectedDefaultTextColor().backgroundText}
         >
           CSS
         </Text>

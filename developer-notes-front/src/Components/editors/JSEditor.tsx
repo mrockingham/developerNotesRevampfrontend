@@ -4,8 +4,8 @@ import { usePathname } from 'next/navigation';
 import { Text, Flex, Button, Box, useColorMode } from '@chakra-ui/react';
 import CodeMirror from '@uiw/react-codemirror';
 import {
-  selectedBackgroundColor,
-  selectedDefaultTextColor,
+  SelectedBackgroundColor,
+  SelectedDefaultTextColor,
 } from '@/utils/colorSelection';
 import { javascript } from '@codemirror/lang-javascript';
 import { aura } from '@uiw/codemirror-theme-aura';
@@ -23,15 +23,18 @@ const JSEditor = (props: { setJsValue: any; value: any }) => {
     message,
   } = useCodeBlockStore((state: any) => state);
   const [open, setOpen] = useState(true);
-  const onChange = useCallback((val: any, viewUpdate: any) => {
-    setJsValue(val);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(
-        'DevErNote-current-notejavascript',
-        JSON.stringify(val)
-      );
-    }
-  }, []);
+  const onChange = useCallback(
+    (val: any, viewUpdate: any) => {
+      setJsValue(val);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(
+          'DevErNote-current-notejavascript',
+          JSON.stringify(val)
+        );
+      }
+    },
+    [setJsValue]
+  );
 
   const jsValue = () => {
     if (typeof window !== 'undefined') {
@@ -48,7 +51,7 @@ const JSEditor = (props: { setJsValue: any; value: any }) => {
         <Flex>
           <Text
             fontSize="1.8rem"
-            color={selectedDefaultTextColor().backgroundText}
+            color={SelectedDefaultTextColor().backgroundText}
           >
             JS
           </Text>

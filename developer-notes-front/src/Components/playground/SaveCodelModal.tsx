@@ -27,8 +27,8 @@ import {
 import { useCodeBlockStore } from '@/stores/useCodeBlockStore';
 import { useUserStore } from '@/stores/useUserStore';
 import {
-  selectedBackgroundColor,
-  selectedDefaultTextColor,
+  SelectedBackgroundColor,
+  SelectedDefaultTextColor,
 } from '@/utils/colorSelection';
 
 const SaveCodelModal = (props: {
@@ -146,9 +146,9 @@ const SaveCodelModal = (props: {
       <Modal size="xl" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent
-          bg={selectedBackgroundColor()}
-          bgGradient={selectedBackgroundColor()}
-          color={selectedDefaultTextColor().backgroundText}
+          bg={SelectedBackgroundColor()}
+          bgGradient={SelectedBackgroundColor()}
+          color={SelectedDefaultTextColor().backgroundText}
         >
           <ModalHeader>Save</ModalHeader>
           <Flex alignItems={'center'}>

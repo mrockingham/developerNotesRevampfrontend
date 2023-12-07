@@ -45,6 +45,7 @@ const GoogleSignIn = () => {
         console.log('is ther an error', err);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     session?.user?.email,
     session?.user?.name,

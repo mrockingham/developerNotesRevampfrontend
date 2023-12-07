@@ -6,7 +6,7 @@ import {
   Image,
 } from '@chakra-ui/react';
 import { useUserStore } from '@/stores/useUserStore';
-import { selectedBackgroundColor } from '@/utils/colorSelection';
+import { SelectedBackgroundColor } from '@/utils/colorSelection';
 
 const Layout: React.FC = ({ children }) => {
   const { data, isUserLoading, userError, createUser } = useUserStore(
@@ -17,8 +17,8 @@ const Layout: React.FC = ({ children }) => {
     <Box
       style={{ overflow: 'auto' }}
       h="100vh"
-      bg={selectedBackgroundColor()}
-      bgGradient={selectedBackgroundColor()}
+      bg={SelectedBackgroundColor()}
+      bgGradient={SelectedBackgroundColor()}
     >
       {/* {hideHeaderIfMatchPathName() ? null : <Header />} */}
       <Header />

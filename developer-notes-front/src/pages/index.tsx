@@ -15,7 +15,7 @@ import {
   useColorModeValue,
   useColorMode,
 } from '@chakra-ui/react';
-import { selectedDefaultTextColor } from '@/utils/colorSelection';
+import { SelectedDefaultTextColor } from '@/utils/colorSelection';
 
 export default function Home(props: any) {
   const { toggleColorMode, colorMode } = useColorMode();
@@ -51,7 +51,7 @@ export default function Home(props: any) {
                   bg: 'blue.400',
                   zIndex: -1,
                 }}
-                color={selectedDefaultTextColor().backgroundText}
+                color={SelectedDefaultTextColor().backgroundText}
               >
                 Developer,
               </Text>
@@ -59,20 +59,20 @@ export default function Home(props: any) {
               <br />
               <Text
                 as={'span'}
-                color={selectedDefaultTextColor().backgroundText}
+                color={SelectedDefaultTextColor().backgroundText}
               >
                 Resource Hub!
               </Text>
             </Heading>
             <Text
               fontSize="lg"
-              color={selectedDefaultTextColor().backgroundText}
+              color={SelectedDefaultTextColor().backgroundText}
             >
               <strong
                 style={{
-                  color: selectedDefaultTextColor().foregroundText,
+                  color: SelectedDefaultTextColor().foregroundText,
                 }}
-                color={selectedDefaultTextColor().backgroundText}
+                color={SelectedDefaultTextColor().backgroundText}
               >
                 DevErNote
               </strong>{' '}
@@ -90,16 +90,16 @@ export default function Home(props: any) {
                 size={'lg'}
                 fontWeight={'normal'}
                 px={6}
-                bg={selectedDefaultTextColor().foregroundText}
+                bg={SelectedDefaultTextColor().foregroundText}
                 _hover={{ bg: 'blue.500' }}
               >
-                <Text color={selectedDefaultTextColor().backgroundText}>
+                <Text color={SelectedDefaultTextColor().backgroundText}>
                   <Link href="/register">Register</Link>
                 </Text>
               </Button>
               <Button
-                bg={selectedDefaultTextColor().backgroundText}
-                color={selectedDefaultTextColor().foregroundText}
+                bg={SelectedDefaultTextColor().backgroundText}
+                color={SelectedDefaultTextColor().foregroundText}
                 rounded={'full'}
                 size={'lg'}
                 fontWeight={'normal'}

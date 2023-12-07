@@ -31,8 +31,8 @@ import { signOut, useSession } from 'next-auth/react';
 
 import NavBarStyles from './navBarStyles.module.css';
 import {
-  selectedBackgroundColor,
-  selectedDefaultTextColor,
+  SelectedBackgroundColor,
+  SelectedDefaultTextColor,
 } from '@/utils/colorSelection';
 const Links = [
   {
@@ -114,15 +114,16 @@ export default function WithAction() {
     checkLoggedIn();
     if (session?.user?.name) {
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Box
-      bg={selectedBackgroundColor()}
-      bgGradient={selectedBackgroundColor()}
+      bg={SelectedBackgroundColor()}
+      bgGradient={SelectedBackgroundColor()}
       className={NavBarStyles.mobileNav}
     >
-      <Box color={selectedDefaultTextColor().backgroundText} px={4}>
+      <Box color={SelectedDefaultTextColor().backgroundText} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             color="black"
@@ -134,7 +135,7 @@ export default function WithAction() {
           />
           <HStack spacing={8} alignItems={'center'}>
             <Box
-              color={selectedDefaultTextColor().backgroundText}
+              color={SelectedDefaultTextColor().backgroundText}
               fontSize="2rem"
               fontWeight="bold"
             >

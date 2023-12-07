@@ -11,7 +11,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 
-import { selectedDefaultTextColor } from '@/utils/colorSelection';
+import { SelectedDefaultTextColor } from '@/utils/colorSelection';
 
 const Register = () => {
   const { toggleColorMode, colorMode } = useColorMode();
@@ -28,11 +28,11 @@ const Register = () => {
           <Box display={{ base: 'none', md: 'block' }} w="50%">
             <Text
               fontSize="4xl"
-              color={selectedDefaultTextColor().backgroundText}
+              color={SelectedDefaultTextColor().backgroundText}
             >
               DevErNote
             </Text>
-            <Text color={selectedDefaultTextColor().backgroundText}>
+            <Text color={SelectedDefaultTextColor().backgroundText}>
               {' '}
               Save your Code snippets for ease of access,have one you like,
               share it!
@@ -45,17 +45,17 @@ const Register = () => {
             h="500px"
             w="50%"
             // border="1px"
-            borderColor={selectedDefaultTextColor().backgroundText}
+            borderColor={SelectedDefaultTextColor().backgroundText}
           >
             <Text
-              color={selectedDefaultTextColor().backgroundText}
+              color={SelectedDefaultTextColor().backgroundText}
               fontSize="3xl"
             >
               Register
             </Text>
             <Flex
               direction="column"
-              borderColor={selectedDefaultTextColor().backgroundText}
+              borderColor={SelectedDefaultTextColor().backgroundText}
               h="100%"
               w="70%"
               justify="space-around"
