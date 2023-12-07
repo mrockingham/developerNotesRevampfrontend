@@ -180,7 +180,7 @@ const SaveCodelModal = (props: {
                     &#10229; Go Back
                   </Button>
                 )}
-                <Popover closeOnBlur={false} w="300px">
+                <Popover closeOnBlur={false}>
                   {({ isOpen, onClose }) => (
                     <>
                       <PopoverTrigger>
