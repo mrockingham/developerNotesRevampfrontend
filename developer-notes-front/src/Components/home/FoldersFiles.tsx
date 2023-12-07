@@ -76,11 +76,11 @@ const FoldersFiles: React.FC<FoldersFilesProps> = () => {
 
   useEffect(() => {
     if (folderView === 'folder' && codeBlocksCategory) {
-      setCodeBlockStateData(codeBlocksCategory);
+      setCodeBlockStateData(codeBlocksCategory?.codeBlock);
     } else if (folderView === 'file' && codeBlocksCreator) {
-      setCodeBlockStateData(codeBlocksCreator);
+      setCodeBlockStateData(codeBlocksCreator?.codeBlock);
     } else if (folderView === 'singleFiles' && codeBlocksUserCategories) {
-      setCodeBlockStateData(codeBlocksUserCategories);
+      setCodeBlockStateData(codeBlocksUserCategories?.codeBlock);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
@@ -166,7 +166,7 @@ const FoldersFiles: React.FC<FoldersFilesProps> = () => {
           flexDirection="row"
           justifyContent="flex-start"
         >
-          {codeBlockStateData?.codeBlock?.map((item: CodeBlock) => (
+          {codeBlockStateData?.map((item: CodeBlock) => (
             <Flex
               onClick={() => {
                 if (folderView === 'folder') {
