@@ -9,6 +9,10 @@ import {
 import { useUserStore } from '@/stores/useUserStore';
 import { SelectedBackgroundColor } from '@/utils/colorSelection';
 
+interface LayoutProps {
+  children: ReactNode;
+}
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { data, isUserLoading, userError, createUser } = useUserStore(
     (state: any) => state
