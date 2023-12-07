@@ -71,9 +71,7 @@ const ViewCodeBlock = () => {
     );
     router.push('/playground');
   };
-  console.log('home codeblock data', codeBlockData);
 
-  console.log('javascript value', jsValue);
   return (
     <Box w="100%" color={SelectedDefaultTextColor().backgroundText}>
       <Text mb={2} fontSize="4xl">
@@ -93,17 +91,17 @@ const ViewCodeBlock = () => {
             <TabPanels w="100%">
               <TabPanel>
                 <Box>
-                  <JSEditor value={jsValue} />
+                  <JSEditor value={jsValue} setJsValue={setJsValue} />
                 </Box>
               </TabPanel>
               <TabPanel>
                 <Box>
-                  <CssEditor value={cssValue} />
+                  <CssEditor value={cssValue} setCssValue={setCssValue} />
                 </Box>
               </TabPanel>
               <TabPanel>
                 <Box>
-                  <HtmlEditor value={htmlValue} />
+                  <HtmlEditor value={htmlValue} setHtmlValue={setHtmlValue} />
                 </Box>
               </TabPanel>
             </TabPanels>
