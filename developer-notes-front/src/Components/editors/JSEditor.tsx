@@ -45,6 +45,7 @@ const JSEditor = (props: { setJsValue: any; value: any }) => {
       return jsonValue != null ? JSON.parse(jsonValue) : '';
     } else return '';
   };
+  // console.log('js value', jsValue());
   return (
     <Flex flexDirection="column" width={open ? '100%' : '20%'}>
       <Flex pl={3} pr={10} w="100%" justifyContent="space-between">
@@ -88,7 +89,7 @@ const JSEditor = (props: { setJsValue: any; value: any }) => {
         // borderColor={colorMode === 'light' ? TextColor1() : TextColor2()}
       >
         <CodeMirror
-          value={jsValue()}
+          value={pathname != '/home' ? jsValue() : value}
           height="300px"
           extensions={[javascript({ jsx: true })]}
           onChange={onChange}

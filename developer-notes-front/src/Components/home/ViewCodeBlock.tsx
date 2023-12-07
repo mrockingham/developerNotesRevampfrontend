@@ -73,7 +73,7 @@ const ViewCodeBlock = () => {
   };
   console.log('home codeblock data', codeBlockData);
 
-  console.log('css value', cssValue);
+  console.log('javascript value', jsValue);
   return (
     <Box w="100%" color={SelectedDefaultTextColor().backgroundText}>
       <Text mb={2} fontSize="4xl">
@@ -93,17 +93,17 @@ const ViewCodeBlock = () => {
             <TabPanels w="100%">
               <TabPanel>
                 <Box>
-                  <JSEditor value={jsValue} setJsValue={setJsValue} />
+                  <JSEditor value={jsValue} />
                 </Box>
               </TabPanel>
               <TabPanel>
                 <Box>
-                  <CssEditor value={cssValue} setCssValue={setCssValue} />
+                  <CssEditor value={cssValue} />
                 </Box>
               </TabPanel>
               <TabPanel>
                 <Box>
-                  <HtmlEditor value={htmlValue} setHtmlValue={setHtmlValue} />
+                  <HtmlEditor value={htmlValue} />
                 </Box>
               </TabPanel>
             </TabPanels>
