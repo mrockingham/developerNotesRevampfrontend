@@ -7,7 +7,7 @@ export const SelectedBackgroundColor = () => {
     );
     let backgroundColor = '';
 
-    console.log('theme info', data?.theme)
+
     if (data?.theme?.gradient) {
         backgroundColor = `linear(to-r, ${data?.theme?.backgroundGradient1}, ${data?.theme?.backgroundGradient2}, ${data?.theme?.backgroundGradient3})`;
     } else if (data?.theme?.gradient === false) {
