@@ -163,7 +163,7 @@ const PlayGround: React.FC<Props> = props => {
           fontWeight={'normal'}
           px={6}
           variant="outline"
-          _hover={{ borderColor: SelectedDefaultTextColor().foregroundText}}
+          _hover={{ borderColor: SelectedDefaultTextColor().foregroundText }}
           onClick={runCode}
           boxShadow="2xl"
           color={SelectedDefaultTextColor().backgroundText}
@@ -203,13 +203,12 @@ const PlayGround: React.FC<Props> = props => {
             </Tab>
           </TabList>
           <TabIndicator
-          w='10%'
+            w="10%"
             mt="-1.5px"
             height="2px"
             bg={SelectedDefaultTextColor().foregroundText}
-   
           />
-          
+
           <TabPanels>
             <TabPanel w="100%">
               <Flex boxShadow="2xl">
@@ -219,7 +218,7 @@ const PlayGround: React.FC<Props> = props => {
             <TabPanel>
               <Flex flexDirection="column">
                 <Flex flexDirection="column">
-                  <Flex boxShadow="2xl">>
+                  <Flex boxShadow="2xl">
                     <iframe
                       srcDoc={srcDoc}
                       style={{ border: '0px' }}
@@ -252,7 +251,7 @@ const PlayGround: React.FC<Props> = props => {
                   JSON.stringify(note)
                 );
               }}
-              focusBorderColor={ SelectedDefaultTextColor().foregroundText }
+              focusBorderColor={SelectedDefaultTextColor().foregroundText}
               h="200px"
               boxShadow="2xl"
               color={SelectedDefaultTextColor().backgroundText}
