@@ -9,9 +9,12 @@ import {
 } from '@/utils/colorSelection';
 import { html } from '@codemirror/lang-html';
 import { aura } from '@uiw/codemirror-theme-aura';
+import { nord } from '@uiw/codemirror-theme-nord';
+import { usePathname } from 'next/navigation';
 
 const HtmlEditor = (props: { setHtmlValue: any; value: string }) => {
   const { setHtmlValue, value } = props;
+  const pathname = usePathname();
   const [open, setOpen] = useState(true);
   const { toggleColorMode, colorMode } = useColorMode();
   const onChange = useCallback((val: string, viewUpdate: any) => {
@@ -37,42 +40,44 @@ const HtmlEditor = (props: { setHtmlValue: any; value: string }) => {
         >
           HTML
         </Text>
-        <Button
-          display={{ base: 'block', md: 'none' }}
-          variant="ghost"
-          onClick={() => setOpen(prevOpen => !prevOpen)}
-        >
-          <NextImage
-            alt="arrow"
-            src="/vdoublearrow.svg"
-            width={30}
-            height={30}
-          />
-        </Button>
-        <Button
-          display={{ base: 'none', md: 'block' }}
-          variant="ghost"
-          onClick={() => setOpen(prevOpen => !prevOpen)}
-        >
-          <NextImage
-            alt="arrow"
-            src="/hdoublearrow.svg"
-            width={30}
-            height={30}
-          />
-        </Button>
+        {pathname !== '/home' && (
+          <Button
+            display={{ base: 'block', md: 'none' }}
+            _hover={{ bg: SelectedDefaultTextColor().foregroundText }}
+            variant={'ghost'}
+            onClick={() => setOpen(prevOpen => !prevOpen)}
+          >
+            <NextImage
+              alt="arrow"
+              src="/vdoublearrow.svg"
+              width={30}
+              height={30}
+            />
+          </Button>
+        )}
+        {pathname !== '/home' && (
+          <Button
+            display={{ base: 'none', md: 'block' }}
+            _hover={{ bg: SelectedDefaultTextColor().foregroundText }}
+            variant={'ghost'}
+            onClick={() => setOpen(prevOpen => !prevOpen)}
+          >
+            <NextImage
+              alt="arrow"
+              src="/hdoublearrow.svg"
+              width={30}
+              height={30}
+            />
+          </Button>
+        )}
       </Flex>
-      <Box
-        borderX="2px"
-        borderBottom="1px"
-        // borderColor={colorMode === 'light' ? TextColor1() : TextColor2()}
-      >
+      <Box boxShadow="2xl" rounded="md">
         <CodeMirror
-          value={htmlValue()}
+          value={pathname != '/home' ? htmlValue() : value}
           height="300px"
           extensions={[html()]}
           onChange={onChange}
-          theme={aura}
+          theme={nord}
         />
       </Box>
     </Flex>

@@ -64,7 +64,7 @@ const RegisterComponent = () => {
     } catch (err) {
       console.log(err);
     }
-    console.log(data);
+
   };
 
   const isValidEmail = (email: string) => {

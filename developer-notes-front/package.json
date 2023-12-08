@@ -21,6 +21,7 @@
     "@types/react-dom": "18.0.11",
     "@uiw/codemirror-theme-aura": "^4.21.20",
     "@uiw/codemirror-theme-basic": "^4.21.20",
+    "@uiw/codemirror-theme-nord": "^4.21.21",
     "@uiw/react-codemirror": "^4.21.20",
     "axios": "^1.6.0",
     "console-feed": "^3.5.0",

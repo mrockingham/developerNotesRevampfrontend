@@ -59,8 +59,8 @@ const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
     py={1}
     rounded={'md'}
     _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
+      textDecoration: `${SelectedDefaultTextColor().foregroundText} underline`,
+      bg: SelectedDefaultTextColor().foregroundText,
     }}
   >
     <Link href={path}>{children}</Link>
@@ -249,7 +249,6 @@ export default function WithAction() {
                 <Box
                   key={name}
                   onClick={() => {
-                    console.log('what name', name);
                     name === 'Home' && getCodeBlockByCategory(data?.email);
                   }}
                 >

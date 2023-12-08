@@ -18,7 +18,7 @@ const index = () => {
     <Box h="100%">
       <Container maxW={'7x1'}>
         <Stack
-          // align={'center'}
+          align={'center'}
           spacing={{ base: 8, md: 10 }}
           pt={{ base: 10, md: 18 }}
           direction={{ base: 'column', md: 'row' }}

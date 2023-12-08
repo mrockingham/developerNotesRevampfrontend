@@ -13,6 +13,7 @@ import {
   TabPanels,
   Tab,
   TabPanel,
+  TabIndicator,
 } from '@chakra-ui/react';
 import { useCodeBlockStore } from '@/stores/useCodeBlockStore';
 import { useUserStore } from '@/stores/useUserStore';
@@ -36,15 +37,12 @@ const ViewCodeBlock = () => {
   const [cssValue, setCssValue] = useState();
   const pathname = usePathname();
 
-  console.log('router info', pathname);
-
   useEffect(() => {
     if (codeBlockData) {
       setJsValue(codeBlockData?.codeBlock?.javascript);
       setHtmlValue(codeBlockData?.codeBlock?.html);
       setCssValue(codeBlockData?.codeBlock?.css);
     }
-    console.log(codeBlockData);
   }, [codeBlockData]);
 
   const editCode = () => {
@@ -79,14 +77,20 @@ const ViewCodeBlock = () => {
         Edit
       </Text>
 
-      <Box w="100%" p={2} border="1px">
+      <Box w="100%" p={2}>
         <Flex w="100%">
-          <Tabs w="100%">
+          <Tabs w="100%" position="relative" variant="unstyled">
             <TabList>
               <Tab>J/S</Tab>
               <Tab>CSS</Tab>
               <Tab>HTML</Tab>
             </TabList>
+            <TabIndicator
+              mt="-1.5px"
+              height="2px"
+              bg={SelectedDefaultTextColor().foregroundText}
+              borderRadius="1px"
+            />
 
             <TabPanels w="100%">
               <TabPanel>
@@ -107,33 +111,36 @@ const ViewCodeBlock = () => {
             </TabPanels>
           </Tabs>
         </Flex>
-
-        <Button
-          color="black"
-          w="150px"
-          mt={2}
-          ml={4}
-          rounded={'full'}
-          size={'md'}
-          fontWeight={'normal'}
-          onClick={() => editCode()}
-        >
-          Edit
-        </Button>
-        <Button
-          color="black"
-          w="150px"
-          mt={2}
-          ml={4}
-          rounded={'full'}
-          size={'md'}
-          fontWeight={'normal'}
-          onClick={() => deleteCodeBlock(codeBlockData?.codeBlock?._id)}
-        >
-          Delete
-        </Button>
-        <Box>
-          <Text as="u">Notes:</Text>
+        <Box mt={2}>
+          <Button
+            color="black"
+            w="150px"
+            mt={2}
+            ml={4}
+            rounded={'full'}
+            size={'md'}
+            fontWeight={'normal'}
+            onClick={() => editCode()}
+          >
+            Edit
+          </Button>
+          <Button
+            color="black"
+            w="150px"
+            mt={2}
+            ml={4}
+            rounded={'full'}
+            size={'md'}
+            fontWeight={'normal'}
+            onClick={() => deleteCodeBlock(codeBlockData?.codeBlock?._id)}
+          >
+            Delete
+          </Button>
+        </Box>
+        <Box mt={2}>
+          <Text fontSize="3xl" as="u">
+            Notes:
+          </Text>
         </Box>
         <Box pb={2}>{codeBlockData?.codeBlock?.note}</Box>
       </Box>

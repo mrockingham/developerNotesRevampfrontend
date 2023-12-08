@@ -108,7 +108,7 @@ const SaveCodelModal = (props: {
       setTitle(item?.title);
     } else if (item?.category?.length > 1) {
       setShowBackButton(true);
-      console.log('is item cat', item?.category);
+
       setFolderCategory(item?.category);
       await getCodeBlockByCategory(data?.email, item?.category);
     }
@@ -130,13 +130,14 @@ const SaveCodelModal = (props: {
         size={'md'}
         fontWeight={'normal'}
         px={6}
-        // bg={colorMode === 'light' ? TextColor1() : TextColor2()}
-        _hover={{ bg: 'blue.500' }}
+        variant="outline"
+        _hover={{ borderColor: SelectedDefaultTextColor().foregroundText }}
+        boxShadow="2xl"
+        color={SelectedDefaultTextColor().backgroundText}
         onClick={() => {
           onOpen();
           getCodeBlockByCreator(data.email);
           codeBlocksAndCategory();
-          console.log('codeBlocksCreator', codeBlocksCreator?.codeBlock);
         }}
       >
         {' '}

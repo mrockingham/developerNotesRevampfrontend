@@ -24,7 +24,7 @@ export const useUserStore = create(set => ({
 
     if (token) {
       const userObject = JSON.parse(token || '');
-      console.log('local info', userObject);
+   
       set({ isLoggedIn: true }); // Update isLoggedIn based on token existence
       set({
         data: {
@@ -60,7 +60,7 @@ export const useUserStore = create(set => ({
         // Save the token in local storage or use a state management library like Zustand to store the token.
 
         localStorage.setItem('accessTokenDevER', JSON.stringify(userObject));
-        console.log('user resonse data', response.data);
+       
         set({
           data: {
             name: response.data.name,
@@ -90,7 +90,7 @@ export const useUserStore = create(set => ({
     try {
       set({ isUserLoading: true });
 
-      console.log('what creds', credentials);
+   
 
       // Make the API call to authenticate the user
       const response = await axios.post(
@@ -110,7 +110,7 @@ export const useUserStore = create(set => ({
         // Save the token in local storage or use a state management library like Zustand to store the token.
 
         localStorage.setItem('accessTokenDevER', JSON.stringify(userObject));
-        console.log('user resonse data', response.data);
+   
         set({
           data: {
             name: response.data.name,
@@ -133,14 +133,14 @@ export const useUserStore = create(set => ({
 
   createUser: async (user: any, router: any) => {
     const data = [];
-    console.log('user', user);
+   
 
     // Get the router instance
 
     try {
       set({ isUserLoading: true });
       const response = await axios.post(`${apiURL}/users`, user);
-      console.log('response', response);
+    
       if (response.data) {
         data.push(response.data);
         set((state: { data: any }) => ({
@@ -158,14 +158,14 @@ export const useUserStore = create(set => ({
   },
   createProviderUser: async (user: any, router: any) => {
     const data = [];
-    console.log('user', user);
+
 
     // Get the router instance
 
     try {
       set({ isUserLoading: true });
       const response = await axios.post(`${apiURL}/users/provreg`, user);
-      console.log('response--------------', response);
+   
       if (response.data) {
         data.push(response.data);
         set((state: { data: any }) => ({
@@ -193,14 +193,14 @@ export const useUserStore = create(set => ({
     provider: boolean;
     themeName: string;
   }) => {
-    console.log('updateTheme');
+  
 
     try {
       const updateUserTheme = await axios.put(
         `${apiURL}/users/update-theme`,
         update
       );
-      console.log('update response', updateUserTheme);
+  
 
       if (updateUserTheme.status === 200) {
         const userObject = {

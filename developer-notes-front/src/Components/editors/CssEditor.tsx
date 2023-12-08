@@ -11,6 +11,7 @@ import {
 
 import { css } from '@codemirror/lang-css';
 import { aura } from '@uiw/codemirror-theme-aura';
+import { nord } from '@uiw/codemirror-theme-nord';
 import { basicDark } from '@uiw/codemirror-theme-basic';
 
 const CssEditor = (props: { setCssValue: any; value: any }) => {
@@ -43,42 +44,51 @@ const CssEditor = (props: { setCssValue: any; value: any }) => {
         >
           CSS
         </Text>
-        <Button
-          display={{ base: 'block', md: 'none' }}
-          variant="ghost"
-          onClick={() => setOpen(prevOpen => !prevOpen)}
-        >
-          <NextImage
-            alt="arrow"
-            src="/vdoublearrow.svg"
-            width={30}
-            height={30}
-          />
-        </Button>
-        <Button
-          display={{ base: 'none', md: 'block' }}
-          variant="ghost"
-          onClick={() => setOpen(prevOpen => !prevOpen)}
-        >
-          <NextImage
-            alt="arrow"
-            src="/hdoublearrow.svg"
-            width={30}
-            height={30}
-          />
-        </Button>
+        {pathname !== '/home' && (
+          <Button
+            display={{ base: 'block', md: 'none' }}
+            _hover={{ bg: SelectedDefaultTextColor().foregroundText }}
+            variant={'ghost'}
+            onClick={() => setOpen(prevOpen => !prevOpen)}
+          >
+            <NextImage
+              alt="arrow"
+              src="/vdoublearrow.svg"
+              width={30}
+              height={30}
+            />
+          </Button>
+        )}
+        {pathname !== '/home' && (
+          <Button
+            display={{ base: 'none', md: 'block' }}
+            _hover={{ bg: SelectedDefaultTextColor().foregroundText }}
+            variant={'ghost'}
+            onClick={() => setOpen(prevOpen => !prevOpen)}
+          >
+            <NextImage
+              alt="arrow"
+              src="/hdoublearrow.svg"
+              width={30}
+              height={30}
+            />
+          </Button>
+        )}
       </Flex>
       <Box
-        borderX="2px"
-        borderBottom="1px"
         // borderColor={colorMode === 'light' ? TextColor1() : TextColor2()}
+        // style={{
+        //   boxShadow: '15px 15px 30px #253544, -15px -15px 30px #31475c',
+        // }}
+        boxShadow="2xl"
+        rounded="md"
       >
         <CodeMirror
           value={pathname != '/home' ? cssValue() : value}
           height="300px"
           extensions={[css()]}
           onChange={onChange}
-          theme={aura}
+          theme={nord}
         />
       </Box>
     </Flex>

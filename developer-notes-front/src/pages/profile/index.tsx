@@ -13,12 +13,6 @@ import {
 const Profile = () => {
   const { data, isLoggedIn, updateTheme } = useUserStore((state: any) => state);
 
-  console.log('profile data', data);
-
-  useEffect(() => {
-    console.log('data after update', data);
-  }, [data]);
-
   return (
     <Box>
       <Container>
@@ -42,7 +36,7 @@ const Profile = () => {
           >
             <Text color="white">code_dark</Text>
           </Button>
-          <Button
+          {/* <Button
             variant="outline"
             onClick={() => {
               updateTheme({
@@ -53,7 +47,7 @@ const Profile = () => {
             }}
           >
             <Text color="white">fluffy_blue_spread</Text>
-          </Button>
+          </Button> */}
           <Button
             variant="outline"
             onClick={() => {

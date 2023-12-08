@@ -12,6 +12,7 @@ import {
   TabPanels,
   Tab,
   TabPanel,
+  TabIndicator,
 } from '@chakra-ui/react';
 import { useCodeBlockStore } from '@/stores/useCodeBlockStore';
 import { useUserStore } from '@/stores/useUserStore';
@@ -47,15 +48,6 @@ const FoldersFiles: React.FC<FoldersFilesProps> = () => {
 
   const uniqueCategories = new Set();
 
-  // useEffect(() => {
-  //   if (folderView === 'folder') {
-  //     getCodeBlockByCategory(data.email);
-  //     if (codeBlocksCategory) {
-  //       setCodeBlockStateData(codeBlocksCategory);
-  //     }
-  //   }
-  // }, []);
-
   useEffect(() => {
     if (folderView === 'folder') {
       getCodeBlockByCategory(data.email);
@@ -64,13 +56,7 @@ const FoldersFiles: React.FC<FoldersFilesProps> = () => {
     } else if (message?.status === 200) {
       setFolderView('folder');
     }
-    // else if (folderView === 'singleFiles') {
-    //   getCodeBlockById(
-    //     codeBlockStateData?.codeBlock[0]._id,
-    //     codeBlockStateData?.codeBlock[0].category,
-    //     data.email
-    //   );
-    // }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [folderView, data.email, message]);
 
@@ -89,9 +75,7 @@ const FoldersFiles: React.FC<FoldersFilesProps> = () => {
     codeBlockData,
     codeBlocksUserCategories,
   ]);
-  console.log('folder view', folderView);
-  console.log('state data', codeBlockStateData);
-  console.log('messages folder', message);
+
   const shortString = (
     str: string | undefined | null
   ): string | undefined | null => {
@@ -104,41 +88,13 @@ const FoldersFiles: React.FC<FoldersFilesProps> = () => {
         {' '}
         Welcome {data.name}
       </Text>
-      {/* <Flex p={2} border="1px" alignItems={'flex-end'}>
-        <Flex w="100%" mr={3} mb={1} alignItems={'baseline'}>
-          <Text mr={4}>Folders</Text>
-          <Input mr={4} w="100%" variant="flushed" placeholder="Search" />
-        </Flex>
-        <Flex>
-          <Image
-            mr={4}
-            src={'./list.png'}
-            alt="Image"
-            width={10}
-            height={8}
-            // className="md:h-auto md:w-full"
-          />
-          <Box>
-            <Image
-              src={'./wfolder.png'}
-              alt="Image"
-              width={10}
-              height={10}
-              // className="md:h-auto md:w-full"
-            />
-          </Box>
-        </Flex>
-      </Flex> */}
+
       <Box>
-        <Tabs p={2} border="1px" position="relative" variant="unstyled">
+        <Tabs p={2} position="relative" variant="unstyled">
           <TabList>
             <Tab
               onClick={() => {
                 setFolderView('folder');
-                // getCodeBlockByCategory(data.email);
-                // if (codeBlocksCategory) {
-                //   setCodeBlockStateData(codeBlocksCategory);
-                // }
               }}
             >
               All Folders
@@ -146,18 +102,20 @@ const FoldersFiles: React.FC<FoldersFilesProps> = () => {
             <Tab
               onClick={() => {
                 setFolderView('file');
-                // getCodeBlockByCreator(data.email);
-                // if (codeBlocksCreator) {
-                //   setCodeBlockStateData(codeBlocksCreator);
-                // }
               }}
             >
               All Files
             </Tab>
           </TabList>
+          <TabIndicator
+            mt="-1.5px"
+            height="2px"
+            bg={SelectedDefaultTextColor().foregroundText}
+            borderRadius="1px"
+          />
         </Tabs>
       </Box>
-      <Box border="1px" h="485px">
+      <Box boxShadow="2xl" rounded="md" h="485px">
         <Flex
           overflowY="auto"
           flexWrap="wrap"
@@ -172,11 +130,8 @@ const FoldersFiles: React.FC<FoldersFilesProps> = () => {
                 if (folderView === 'folder') {
                   setFolderView('singleFiles');
                   getUserCodeBlockCategories(data.email, item.category);
-                  // openFolder(item);
                 } else {
                   getCodeBlockById(item._id, item.category, data.email);
-
-                  console.log('selected codeblock', selctedCodeBlock);
                 }
               }}
               maxWidth="100%"
@@ -194,7 +149,6 @@ const FoldersFiles: React.FC<FoldersFilesProps> = () => {
                 alt="Image"
                 width={100}
                 height={100}
-                // className="md:h-auto md:w-full"
               />
               <Box>
                 {folderView === 'folder'

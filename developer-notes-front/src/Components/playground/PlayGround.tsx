@@ -14,6 +14,9 @@ import {
   Textarea,
   Box,
   Input,
+  TabIndicator,
+  InputGroup,
+  InputLeftAddon,
 } from '@chakra-ui/react';
 
 import {
@@ -119,20 +122,24 @@ const PlayGround: React.FC<Props> = props => {
         </Text>
       </Flex>
       <Flex>
-        <Input
-          value={title}
-          onChange={e => {
-            setTitle(e.target.value);
-            localStorage.setItem(
-              'DevErNote-current-notetitle',
-              JSON.stringify(title)
-            );
-          }}
-          variant="flushed"
-          placeholder="Title"
-          _placeholder={{ fontSize: '24px' }}
-          w="200px"
-        />
+        <InputGroup>
+          {/* <InputLeftAddon children="Title" /> */}
+          <Input
+            color={SelectedDefaultTextColor().backgroundText}
+            value={title}
+            onChange={e => {
+              setTitle(e.target.value);
+              localStorage.setItem(
+                'DevErNote-current-notetitle',
+                JSON.stringify(title)
+              );
+            }}
+            variant="flushed"
+            placeholder="Title"
+            _placeholder={{ fontSize: '24px' }}
+            w="200px"
+          />
+        </InputGroup>
       </Flex>
 
       <Flex
@@ -146,7 +153,7 @@ const PlayGround: React.FC<Props> = props => {
         <HtmlEditor value={htmlValue} setHtmlValue={setHtmlValue} />
         <CssEditor value={cssValue} setCssValue={setCssValue} />
       </Flex>
-      <Flex>
+      <Flex mt={2}>
         <Button
           w="150px"
           mt={2}
@@ -155,9 +162,11 @@ const PlayGround: React.FC<Props> = props => {
           size={'md'}
           fontWeight={'normal'}
           px={6}
-          // bg={colorMode === 'light' ? TextColor1() : TextColor2()}
-          _hover={{ bg: 'blue.500' }}
+          variant="outline"
+          _hover={{ borderColor: SelectedDefaultTextColor().foregroundText}}
           onClick={runCode}
+          boxShadow="2xl"
+          color={SelectedDefaultTextColor().backgroundText}
         >
           {' '}
           &#10148; Run Code
@@ -193,32 +202,24 @@ const PlayGround: React.FC<Props> = props => {
               </Text>
             </Tab>
           </TabList>
+          <TabIndicator
+          w='10%'
+            mt="-1.5px"
+            height="2px"
+            bg={SelectedDefaultTextColor().foregroundText}
+   
+          />
+          
           <TabPanels>
             <TabPanel w="100%">
-              <Flex
-                borderX="1px"
-                borderBottom="1px"
-                // borderColor={
-                //   colorMode === 'light' ? TextColor1() : TextColor2()
-                // }
-                bg="#2b3e50"
-                // boxShadow="15px 15px 30px #253544, -15px -15px 30px #31475c"
-              >
+              <Flex boxShadow="2xl">
                 <ConsoleFeed logs={logs} onLog={onLog} />
               </Flex>
             </TabPanel>
             <TabPanel>
               <Flex flexDirection="column">
                 <Flex flexDirection="column">
-                  <Flex
-                    bg="#2b3e50"
-                    borderX="2px"
-                    borderBottom="1px"
-                    // borderColor={
-                    //   colorMode === 'light' ? TextColor1() : TextColor2()
-                    // }
-                    // boxShadow="15px 15px 30px #253544, -15px -15px 30px #31475c"
-                  >
+                  <Flex boxShadow="2xl">>
                     <iframe
                       srcDoc={srcDoc}
                       style={{ border: '0px' }}
@@ -241,7 +242,7 @@ const PlayGround: React.FC<Props> = props => {
           >
             Notes:
           </Text>
-          <Box mt={8}>
+          <Box p={2} mt={8}>
             <Textarea
               value={note}
               onChange={e => {
@@ -251,11 +252,10 @@ const PlayGround: React.FC<Props> = props => {
                   JSON.stringify(note)
                 );
               }}
+              focusBorderColor={ SelectedDefaultTextColor().foregroundText }
               h="200px"
-              border="2px"
-              // borderColor={colorMode === 'light' ? TextColor1() : TextColor2()}
-              color="black"
-              bg="white"
+              boxShadow="2xl"
+              color={SelectedDefaultTextColor().backgroundText}
             ></Textarea>
           </Box>
         </Box>

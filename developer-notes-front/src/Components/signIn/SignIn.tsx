@@ -54,7 +54,6 @@ const SignInComponent = () => {
     } catch (err) {
       console.log(err);
     }
-    console.log(data);
   };
 
   const isValidEmail = (email: string) => {
@@ -73,6 +72,7 @@ const SignInComponent = () => {
 
           <Input
             value={email}
+            color={SelectedDefaultTextColor().backgroundText}
             onChange={e => {
               setEmail(e.target.value);
               setError('');
@@ -87,6 +87,7 @@ const SignInComponent = () => {
         <FormControl color="white" id="password" isRequired mt={6}>
           <FormLabel fontSize="2rem">Password</FormLabel>
           <Input
+            color={SelectedDefaultTextColor().backgroundText}
             value={password}
             onChange={e => {
               setPassword(e.target.value);

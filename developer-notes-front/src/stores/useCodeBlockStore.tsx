@@ -49,7 +49,7 @@ export const useCodeBlockStore = create(set => ({
       );
 
       if (getCodeBlock) {
-        console.log('code block id', getCodeBlock);
+       
         set({
           codeBlockData: { codeBlock: getCodeBlock?.data },
         });
@@ -86,7 +86,7 @@ export const useCodeBlockStore = create(set => ({
       );
 
       if (getCodeBlock) {
-        console.log('code block id', getCodeBlock);
+      
         set({
           codeBlocksCreator: { codeBlock: getCodeBlock.data },
         });
@@ -112,8 +112,7 @@ export const useCodeBlockStore = create(set => ({
         return;
       }
 
-      console.log('header token', parsedToken);
-      console.log('data in cat call');
+  
 
       const getCodeBlocksByCategory = await axios.post(
         `${apiURL}/codeblock/category`,
@@ -166,7 +165,7 @@ export const useCodeBlockStore = create(set => ({
       );
 
       if (getCodeBlocksByUserCategory) {
-        console.log('code User', getCodeBlocksByUserCategory?.data);
+      
         set({
           codeBlocksUserCategories: {
             codeBlock: getCodeBlocksByUserCategory?.data,
