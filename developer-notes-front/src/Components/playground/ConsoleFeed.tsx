@@ -37,7 +37,7 @@ export const ConsoleFeed: React.FC<Props> = props => {
       if (data && data.source === 'jsRunner') {
         switch (data.type) {
           case 'log':
-          
+            console.log(...data.message);
             break;
           case 'error':
             if (Array.isArray(data.message)) {
@@ -55,6 +55,7 @@ export const ConsoleFeed: React.FC<Props> = props => {
   }, []);
 
   const _logs = props.logs || logs;
+  // console.log('props logs', _logs);
   return (
     <Box minH="200px">
       <Console

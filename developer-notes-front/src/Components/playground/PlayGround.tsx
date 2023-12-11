@@ -64,25 +64,10 @@ const PlayGround: React.FC<Props> = props => {
     }
   };
 
-  const saveCodeBlock = () => {
-    createCodeBlock({
-      title: title,
-      creator: data?.email,
-      provider: data?.provider,
-      category: '',
-      subCategory: '',
-      html: htmlValue,
-      css: cssValue,
-      javascript: jsValue,
-      note: note,
-      tags: '',
-      useFullCount: '',
-    });
-  };
-
   const onLog = useCallback((log: Message) => {
     setLogs(pre => [...pre, log]);
   }, []);
+  // console.log('js value');
 
   useEffect(() => {
     setCode(jsValue);
@@ -98,14 +83,29 @@ const PlayGround: React.FC<Props> = props => {
     }, 250);
     return () => clearTimeout(timeout);
   }, [htmlValue, cssValue, jsValue]);
+
   useEffect(() => {
+    const storedJsValue = localStorage.getItem(
+      'DevErNote-current-notejavascript'
+    );
+    const storedCss = localStorage.getItem('DevErNote-current-notecss');
     const storedTitle = localStorage.getItem('DevErNote-current-notetitle');
     const storedNote = localStorage.getItem('DevErNote-current-note');
+    const storedHtml = localStorage.getItem('DevErNote-current-notehtml');
     if (storedTitle) {
       setTitle(JSON.parse(storedTitle));
     }
     if (storedNote) {
       setNote(JSON.parse(storedNote));
+    }
+    if (storedCss) {
+      setCssValue(JSON.parse(storedCss));
+    }
+    if (storedHtml) {
+      setHtmlValue(JSON.parse(storedHtml));
+    }
+    if (storedJsValue) {
+      setJsValue(JSON.parse(storedJsValue));
     }
   }, []);
 
@@ -181,12 +181,12 @@ const PlayGround: React.FC<Props> = props => {
         />
       </Flex>
       <Flex justifyContent="space-between">
-        <Tabs isFitted variant="unstyled" mt={4} w="45%">
+        <Tabs variant="soft-rounded" colorScheme={'dark-blue'} mt={4} w="45%">
           <TabList>
             <Tab>
               <Text
                 p={2}
-                fontSize="1.4rem"
+                fontSize="1rem"
                 color={SelectedDefaultTextColor().backgroundText}
               >
                 Console
@@ -195,19 +195,19 @@ const PlayGround: React.FC<Props> = props => {
             <Tab>
               <Text
                 p={2}
-                fontSize="1.4rem"
+                fontSize="1rem"
                 color={SelectedDefaultTextColor().backgroundText}
               >
                 Browser
               </Text>
             </Tab>
           </TabList>
-          <TabIndicator
+          {/* <TabIndicator
             w="10%"
             mt="-1.5px"
             height="2px"
             bg={SelectedDefaultTextColor().foregroundText}
-          />
+          /> */}
 
           <TabPanels>
             <TabPanel w="100%">

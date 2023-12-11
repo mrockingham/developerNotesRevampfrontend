@@ -16,6 +16,7 @@ import { useUserStore } from '@/stores/useUserStore';
 
 const JSEditor = (props: { setJsValue: any; value: any }) => {
   const { setJsValue, value } = props;
+  // console.log('js editor props', props.value);
   const pathname = usePathname();
   const { toggleColorMode, colorMode } = useColorMode();
   const {
