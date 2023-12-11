@@ -181,12 +181,19 @@ const PlayGround: React.FC<Props> = props => {
         />
       </Flex>
       <Flex justifyContent="space-between">
-        <Tabs variant="soft-rounded" colorScheme={'dark-blue'} mt={4} w="45%">
+        <Tabs
+          boxShadow="2xl"
+          position="relative"
+          variant="unstyled"
+          isFitted
+          mt={4}
+          w="45%"
+        >
           <TabList>
             <Tab>
               <Text
                 p={2}
-                fontSize="1rem"
+                fontSize="1.4rem"
                 color={SelectedDefaultTextColor().backgroundText}
               >
                 Console
@@ -195,30 +202,30 @@ const PlayGround: React.FC<Props> = props => {
             <Tab>
               <Text
                 p={2}
-                fontSize="1rem"
+                fontSize="1.4rem"
                 color={SelectedDefaultTextColor().backgroundText}
               >
                 Browser
               </Text>
             </Tab>
           </TabList>
-          {/* <TabIndicator
+          <TabIndicator
             w="10%"
             mt="-1.5px"
             height="2px"
             bg={SelectedDefaultTextColor().foregroundText}
-          /> */}
+          />
 
           <TabPanels>
             <TabPanel w="100%">
-              <Flex boxShadow="2xl">
+              <Flex>
                 <ConsoleFeed logs={logs} onLog={onLog} />
               </Flex>
             </TabPanel>
             <TabPanel>
               <Flex flexDirection="column">
                 <Flex flexDirection="column">
-                  <Flex boxShadow="2xl">
+                  <Flex>
                     <iframe
                       srcDoc={srcDoc}
                       style={{ border: '0px' }}
@@ -233,16 +240,18 @@ const PlayGround: React.FC<Props> = props => {
             </TabPanel>
           </TabPanels>
         </Tabs>
-        <Box w="45%">
+
+        <Box boxShadow="2xl" w="45%" mt={4}>
           <Text
             fontSize="1.4rem"
             color={SelectedDefaultTextColor().backgroundText}
-            pt={8}
+            align="center"
           >
             Notes:
           </Text>
-          <Box p={2} mt={8}>
+          <Box p={4} mt={8}>
             <Textarea
+              p={'2'}
               value={note}
               onChange={e => {
                 setNote(e.target.value);
@@ -253,7 +262,6 @@ const PlayGround: React.FC<Props> = props => {
               }}
               focusBorderColor={SelectedDefaultTextColor().foregroundText}
               h="200px"
-              boxShadow="2xl"
               color={SelectedDefaultTextColor().backgroundText}
             ></Textarea>
           </Box>

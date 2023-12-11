@@ -70,47 +70,9 @@ const ViewCodeBlock = () => {
     router.push('/playground');
   };
 
-  return (
-    <Box w="100%" color={SelectedDefaultTextColor().backgroundText}>
-      <Text mb={2} fontSize="4xl">
-        {' '}
-        Edit
-      </Text>
-
-      <Box w="100%" p={2}>
-        <Flex w="100%">
-          <Tabs w="100%" position="relative" variant="unstyled">
-            <TabList>
-              <Tab>J/S</Tab>
-              <Tab>CSS</Tab>
-              <Tab>HTML</Tab>
-            </TabList>
-            <TabIndicator
-              mt="-1.5px"
-              height="2px"
-              bg={SelectedDefaultTextColor().foregroundText}
-              borderRadius="1px"
-            />
-
-            <TabPanels w="100%">
-              <TabPanel>
-                <Box>
-                  <JSEditor value={jsValue} setJsValue={setJsValue} />
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <Box>
-                  <CssEditor value={cssValue} setCssValue={setCssValue} />
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <Box>
-                  <HtmlEditor value={htmlValue} setHtmlValue={setHtmlValue} />
-                </Box>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-        </Flex>
+  const editSection = () => {
+    return (
+      <Box>
         <Box mt={2}>
           <Button
             color="black"
@@ -137,12 +99,60 @@ const ViewCodeBlock = () => {
             Delete
           </Button>
         </Box>
-        <Box mt={2}>
-          <Text fontSize="3xl" as="u">
-            Notes:
+        <Flex justifyContent={'center'} mt={4}>
+          <Text w="100%" fontSize="3xl" as="u" align="center">
+            Notes
           </Text>
-        </Box>
+        </Flex>
         <Box pb={2}>{codeBlockData?.codeBlock?.note}</Box>
+      </Box>
+    );
+  };
+
+  return (
+    <Box w="100%" color={SelectedDefaultTextColor().backgroundText}>
+      <Text mb={2} fontSize="4xl">
+        {' '}
+        Edit
+      </Text>
+
+      <Box w="100%" p={2}>
+        <Flex w="100%">
+          <Tabs w="100%" position="relative" variant="unstyled">
+            <TabList>
+              <Tab>J/S</Tab>
+              <Tab>CSS</Tab>
+              <Tab>HTML</Tab>
+            </TabList>
+            <TabIndicator
+              mt="-1.5px"
+              height="2px"
+              bg={SelectedDefaultTextColor().foregroundText}
+              borderRadius="1px"
+            />
+
+            <TabPanels boxShadow="2xl" w="100%">
+              <TabPanel>
+                <Box>
+                  <JSEditor value={jsValue} setJsValue={setJsValue} />
+                  {editSection()}
+                </Box>
+              </TabPanel>
+              <TabPanel>
+                <Box>
+                  <CssEditor value={cssValue} setCssValue={setCssValue} />
+                  {editSection()}
+                </Box>
+              </TabPanel>
+              <TabPanel>
+                <Box>
+                  <HtmlEditor value={htmlValue} setHtmlValue={setHtmlValue} />
+                  {editSection()}
+                </Box>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </Flex>
       </Box>
     </Box>
   );

@@ -49,7 +49,6 @@ export const useCodeBlockStore = create(set => ({
       );
 
       if (getCodeBlock) {
-       
         set({
           codeBlockData: { codeBlock: getCodeBlock?.data },
         });
@@ -86,7 +85,6 @@ export const useCodeBlockStore = create(set => ({
       );
 
       if (getCodeBlock) {
-      
         set({
           codeBlocksCreator: { codeBlock: getCodeBlock.data },
         });
@@ -111,8 +109,6 @@ export const useCodeBlockStore = create(set => ({
         console.error('Token parsing failed or token is missing');
         return;
       }
-
-  
 
       const getCodeBlocksByCategory = await axios.post(
         `${apiURL}/codeblock/category`,
@@ -165,7 +161,6 @@ export const useCodeBlockStore = create(set => ({
       );
 
       if (getCodeBlocksByUserCategory) {
-      
         set({
           codeBlocksUserCategories: {
             codeBlock: getCodeBlocksByUserCategory?.data,
@@ -181,8 +176,6 @@ export const useCodeBlockStore = create(set => ({
   createCodeBlock: async (codeBlock: any) => {
     try {
       const saveBlock = await axios.post(`${apiURL}/codeblock/`, codeBlock);
-
-      console.log('info from saveBlock', saveBlock);
     } catch (err) {
       console.log(err);
       set({ codeBlock: err });
