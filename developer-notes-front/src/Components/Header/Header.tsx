@@ -80,22 +80,7 @@ export default function WithAction() {
     (state: any) => state
   );
 
-  // const [session] = useSession();
   const router = useRouter();
-  // const { creator, setCreator } = useCreator();
-
-  // useEffect(() => {
-  // console.log('check', session);
-  //   if (session) {
-  //     axios
-  //       .post(`app/users/profile`, {
-  //         email: session?.user?.email,
-  //       })
-  //       .then(response => {
-  //         setCreator(response.data);
-  //       });
-  //   }
-  // }, [creator, session, setCreator]);
 
   const shortString = (
     str: string | undefined | null
@@ -112,8 +97,7 @@ export default function WithAction() {
 
   useEffect(() => {
     checkLoggedIn();
-    if (session?.user?.name) {
-    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

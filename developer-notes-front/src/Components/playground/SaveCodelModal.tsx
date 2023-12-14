@@ -139,6 +139,7 @@ const SaveCodelModal = (props: {
           getCodeBlockByCreator(data.email);
           codeBlocksAndCategory();
         }}
+        isDisabled={!data.email ? true : false}
       >
         {' '}
         &#10148; Save

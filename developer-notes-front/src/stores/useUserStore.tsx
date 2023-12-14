@@ -24,7 +24,7 @@ export const useUserStore = create(set => ({
 
     if (token) {
       const userObject = JSON.parse(token || '');
-   
+
       set({ isLoggedIn: true }); // Update isLoggedIn based on token existence
       set({
         data: {
@@ -60,7 +60,7 @@ export const useUserStore = create(set => ({
         // Save the token in local storage or use a state management library like Zustand to store the token.
 
         localStorage.setItem('accessTokenDevER', JSON.stringify(userObject));
-       
+
         set({
           data: {
             name: response.data.name,
@@ -90,8 +90,6 @@ export const useUserStore = create(set => ({
     try {
       set({ isUserLoading: true });
 
-   
-
       // Make the API call to authenticate the user
       const response = await axios.post(
         `${apiURL}/users/loginprov`,
@@ -110,7 +108,7 @@ export const useUserStore = create(set => ({
         // Save the token in local storage or use a state management library like Zustand to store the token.
 
         localStorage.setItem('accessTokenDevER', JSON.stringify(userObject));
-   
+
         set({
           data: {
             name: response.data.name,
@@ -133,14 +131,13 @@ export const useUserStore = create(set => ({
 
   createUser: async (user: any, router: any) => {
     const data = [];
-   
 
     // Get the router instance
 
     try {
       set({ isUserLoading: true });
       const response = await axios.post(`${apiURL}/users`, user);
-    
+
       if (response.data) {
         data.push(response.data);
         set((state: { data: any }) => ({
@@ -159,13 +156,12 @@ export const useUserStore = create(set => ({
   createProviderUser: async (user: any, router: any) => {
     const data = [];
 
-
     // Get the router instance
 
     try {
       set({ isUserLoading: true });
       const response = await axios.post(`${apiURL}/users/provreg`, user);
-   
+
       if (response.data) {
         data.push(response.data);
         set((state: { data: any }) => ({
@@ -185,6 +181,7 @@ export const useUserStore = create(set => ({
     // Clear the token from local storage and set isLoggedIn to false
     localStorage.removeItem('accessTokenDevER');
     set({ isLoggedIn: false });
+    set({ data: [] });
 
     // Redirect the user to the login page after logout
   },
@@ -193,14 +190,11 @@ export const useUserStore = create(set => ({
     provider: boolean;
     themeName: string;
   }) => {
-  
-
     try {
       const updateUserTheme = await axios.put(
         `${apiURL}/users/update-theme`,
         update
       );
-  
 
       if (updateUserTheme.status === 200) {
         const userObject = {

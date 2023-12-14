@@ -108,6 +108,7 @@ const PlayGround: React.FC<Props> = props => {
       setJsValue(JSON.parse(storedJsValue));
     }
   }, []);
+  // console.log('data', data);
 
   return (
     <Container maxW="90%">
