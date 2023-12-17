@@ -157,7 +157,7 @@ const PlayGround: React.FC<Props> = props => {
       </Flex>
       <Flex mt={2}>
         <Button
-          w="150px"
+          // w="150px"
           mt={2}
           ml={4}
           rounded={'full'}
@@ -171,7 +171,7 @@ const PlayGround: React.FC<Props> = props => {
           color={SelectedDefaultTextColor().backgroundText}
         >
           {' '}
-          &#10148; Run Code
+          &#10148; Run
         </Button>
         <SaveCodelModal
           title={title}
