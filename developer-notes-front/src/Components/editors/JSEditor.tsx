@@ -25,6 +25,7 @@ const JSEditor = (props: { setJsValue: any; value: any }) => {
     message,
   } = useCodeBlockStore((state: any) => state);
   const [open, setOpen] = useState(true);
+  const [openVerticle, setOpenVerticle] = useState(true);
   const onChange = useCallback(
     (val: any, viewUpdate: any) => {
       setJsValue(val);
@@ -49,7 +50,10 @@ const JSEditor = (props: { setJsValue: any; value: any }) => {
   };
   // console.log('js value', jsValue());
   return (
-    <Flex flexDirection="column" width={open ? '100%' : '20%'}>
+    <Flex
+      flexDirection="column"
+      width={{ md: open ? '100%' : '20%', base: open ? '100%' : '100%' }}
+    >
       <Flex pl={3} pr={10} w="100%" justifyContent="space-between">
         <Flex>
           <Text
@@ -65,7 +69,7 @@ const JSEditor = (props: { setJsValue: any; value: any }) => {
             display={{ base: 'block', md: 'none' }}
             _hover={{ bg: SelectedDefaultTextColor().foregroundText }}
             variant={'ghost'}
-            onClick={() => setOpen(prevOpen => !prevOpen)}
+            onClick={() => setOpenVerticle(prevOpen => !prevOpen)}
           >
             <NextImage
               alt="arrow"
@@ -91,9 +95,16 @@ const JSEditor = (props: { setJsValue: any; value: any }) => {
           </Button>
         )}
       </Flex>
-      <Box boxShadow="2xl" rounded="md">
+      <Box
+        boxShadow="2xl"
+        rounded="md"
+        display={!openVerticle ? 'none' : 'block'}
+      >
         <CodeMirror
           value={pathname != '/home' ? jsValue() : value}
+          // css={{
+          //   height: '100%', // Make sure CodeMirror takes 100% height of the parent Box
+          // }}
           height="300px"
           extensions={[javascript({ jsx: true })]}
           onChange={onChange}

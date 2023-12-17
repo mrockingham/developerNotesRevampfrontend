@@ -16,6 +16,7 @@ const HtmlEditor = (props: { setHtmlValue: any; value: string }) => {
   const { setHtmlValue, value } = props;
   const pathname = usePathname();
   const [open, setOpen] = useState(true);
+  const [openVerticle, setOpenVerticle] = useState(true);
   const { toggleColorMode, colorMode } = useColorMode();
   const onChange = useCallback((val: string, viewUpdate: any) => {
     setHtmlValue(val);
@@ -32,7 +33,10 @@ const HtmlEditor = (props: { setHtmlValue: any; value: string }) => {
     } else return '';
   };
   return (
-    <Flex flexDirection="column" width={open ? '100%' : '20%'}>
+    <Flex
+      flexDirection="column"
+      width={{ md: open ? '100%' : '20%', base: open ? '100%' : '100%' }}
+    >
       <Flex pl={3} pr={10} w="100%" justifyContent="space-between">
         <Text
           fontSize="1.8rem"
@@ -45,7 +49,7 @@ const HtmlEditor = (props: { setHtmlValue: any; value: string }) => {
             display={{ base: 'block', md: 'none' }}
             _hover={{ bg: SelectedDefaultTextColor().foregroundText }}
             variant={'ghost'}
-            onClick={() => setOpen(prevOpen => !prevOpen)}
+            onClick={() => setOpenVerticle(prevOpen => !prevOpen)}
           >
             <NextImage
               alt="arrow"
@@ -71,7 +75,11 @@ const HtmlEditor = (props: { setHtmlValue: any; value: string }) => {
           </Button>
         )}
       </Flex>
-      <Box boxShadow="2xl" rounded="md">
+      <Box
+        boxShadow="2xl"
+        rounded="md"
+        display={!openVerticle ? 'none' : 'block'}
+      >
         <CodeMirror
           value={pathname != '/home' ? htmlValue() : value}
           height="300px"

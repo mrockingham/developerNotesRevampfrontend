@@ -149,6 +149,7 @@ const PlayGround: React.FC<Props> = props => {
         minWidth="max-content"
         alignItems="center"
         gap="4"
+        h="100%"
       >
         <JSEditor value={jsValue} setJsValue={setJsValue} />
         <HtmlEditor value={htmlValue} setHtmlValue={setHtmlValue} />
