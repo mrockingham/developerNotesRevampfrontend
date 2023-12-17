@@ -43,7 +43,7 @@ const Register = () => {
             direction="column"
             align={'center'}
             h="500px"
-            w="50%"
+            w={{ base: '100%', md: '50%' }}
             // border="1px"
             borderColor={SelectedDefaultTextColor().backgroundText}
           >

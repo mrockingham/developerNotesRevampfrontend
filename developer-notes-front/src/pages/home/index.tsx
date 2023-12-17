@@ -24,10 +24,10 @@ const index = () => {
           direction={{ base: 'column', md: 'row' }}
           justifyContent={'center'}
         >
-          <Box w="50%">
+          <Box w={{ base: '100%', md: '50%' }}>
             <FoldersFiles />
           </Box>
-          <Flex w="50%">
+          <Flex w={{ base: '100%', md: '50%' }}>
             <ViewCodeBlock />
           </Flex>
         </Stack>

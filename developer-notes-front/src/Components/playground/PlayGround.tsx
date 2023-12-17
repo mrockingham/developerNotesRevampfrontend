@@ -182,14 +182,17 @@ const PlayGround: React.FC<Props> = props => {
           note={note}
         />
       </Flex>
-      <Flex justifyContent="space-between">
+      <Flex
+        justifyContent="space-between"
+        direction={{ base: 'column', md: 'row' }}
+      >
         <Tabs
           boxShadow="2xl"
           position="relative"
           variant="unstyled"
           isFitted
           mt={4}
-          w="45%"
+          w={{ base: '100%', md: '45%' }}
         >
           <TabList>
             <Tab>
@@ -243,7 +246,7 @@ const PlayGround: React.FC<Props> = props => {
           </TabPanels>
         </Tabs>
 
-        <Box boxShadow="2xl" w="45%" mt={4}>
+        <Box boxShadow="2xl" w={{ base: '100%', md: '45%' }} mt={4}>
           <Text
             fontSize="1.4rem"
             color={SelectedDefaultTextColor().backgroundText}
