@@ -41,7 +41,7 @@ export const ConsoleFeed: React.FC<Props> = props => {
             break;
           case 'error':
             if (Array.isArray(data.message)) {
-              console.error(...data.message);
+              console.error('error',...data.message);
             } else {
               console.error(data.message);
             }

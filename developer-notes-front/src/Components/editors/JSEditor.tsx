@@ -48,7 +48,6 @@ const JSEditor = (props: { setJsValue: any; value: any }) => {
       return jsonValue != null ? JSON.parse(jsonValue) : '';
     } else return '';
   };
-  // console.log('js value', jsValue());
   return (
     <Flex
       flexDirection="column"

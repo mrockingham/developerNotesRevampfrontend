@@ -72,6 +72,12 @@ const PlayGround: React.FC<Props> = props => {
   useEffect(() => {
     setCode(jsValue);
 
+    try {
+      eval(jsValue);
+    } catch (error) {
+      console.error('JavaScript Syntax Error, check dev tools');
+    }
+
     const timeout = setTimeout(() => {
       setSrcDoc(`
             <html>
@@ -172,6 +178,23 @@ const PlayGround: React.FC<Props> = props => {
         >
           {' '}
           &#10148; Run
+        </Button>
+        <Button
+          // w="150px"
+          mt={2}
+          ml={4}
+          rounded={'full'}
+          size={'md'}
+          fontWeight={'normal'}
+          px={6}
+          variant="outline"
+          _hover={{ borderColor: SelectedDefaultTextColor().foregroundText }}
+          onClick={() => setLogs([])}
+          boxShadow="2xl"
+          color={SelectedDefaultTextColor().backgroundText}
+        >
+          {' '}
+          &#10148; Clear
         </Button>
         <SaveCodelModal
           title={title}
